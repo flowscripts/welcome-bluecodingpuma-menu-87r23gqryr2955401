@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FlowScripts - HTML Made Easy</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image/jpg" href="https://i.ibb.co/xMnzd6n/imagecool-9.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>@font-face {
+  font-family: Nunitosemi;
+  src: url(Nunito-SemiBold.ttf);}
+  @font-face {
+  font-family: pagetext;
+  src: url(Montserrat-SemiBold.ttf);}
+
+  @font-face {
+  font-family: linksfont;
+  src: url(Poppins-Medium.ttf);}
+
+a{font-family: 'linksfont';}
+
+  h1{
+    font-family: 'Nunitosemi',Arial, Helvetica, sans-serif;
+
+  }
+
+p{
+  font-family: 'pagetext',Arial, Helvetica, sans-serif;
+} 
+h2{
+  font-family: 'pagetext',Arial, Helvetica, sans-serif;
+} 
+h3{
+  font-family: 'pagetext',Arial, Helvetica, sans-serif;
+} 
+h4{
+  font-family: 'pagetext',Arial, Helvetica, sans-serif;
+} 
+h5{
+  font-family: 'pagetext',Arial, Helvetica, sans-serif;
+} 
+h6{
+  font-family: 'pagetext',Arial, Helvetica, sans-serif;
+} 
+
+</style>
+
+
+
+
+
+
+    <style>
+        body {
+            margin: 0;
+         
+        }
+
+        .navbar {
+          width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgb(0,154,255);
+            background: linear-gradient(131deg, rgba(0,154,255,1) 0%, rgba(43,0,255,1) 22%, rgba(43,0,255,1) 100%);;
+            padding: 10px;
+            color: white;
+            position: fixed; /* or 'absolute' if preferred */ top: 0; left: 0; z-index: 9999;
+          
+          
+          }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+        }
+
+        .link-desktop:hover {
+          border-top-right-radius: 20px;
+          border-top-left-radius: 20px;
+          border-bottom-right-radius: 15px;
+          border-bottom-left-radius: 15px;
+            background-color: #484eff;
+        }
+
+        .navbar .brand {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .menu {
+            display: flex;
+        }
+
+        @media screen and (max-width: 600px) {
+            .menu {
+                flex-direction: column;
+                display: none;
+                width: 100%;
+            }
+
+            .menu a {
+                text-align: center;
+                padding: 10px;
+                border-top: 1px solid #575757;
+            }
+
+            .menu.show {
+                display: flex;
+            }
+
+            .navbar .toggle-button {
+
+
+              
+                display: inline-block;
+                cursor: pointer;
+            }
+        }
+
+
+        .navbar .toggle-button
+        {
+          opacity: 0;
+            animation: fadeIn 1s ease-in forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media screen and (min-width: 601px) {
+            .navbar .toggle-button {
+                display: none;
+            }
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .close {
+            color: #1e00ff;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: rgb(70, 70, 70);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+
+        .link-desktop{
+          opacity: 0;
+          border-top-right-radius: 20px;
+          border-top-left-radius: 20px;
+          border-bottom-right-radius: 15px;
+          border-bottom-left-radius: 15px;
+          transition: background-color 0.2s ease;
+            animation: fadeIn 1.2s ease-in forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="navbar">
+        <div class="brand">
+        <img class="flowscripts-logo-top" style="height:50px;" src="https://i.ibb.co/KXdNMBt/Untitled5.png" alt="FlowScripts"></div>
+       <a href="https://flowscripts.github.io/account"> 
+        <div class="toggle-button">BlueCodingPuma</div>
+      </a>  <div class="menu">
+            <a class="link-desktop" href="https://flowscripts.github.io/home">Home</a>
+          
+            <a class="link-desktop" href="https://flowscripts.github.io/templates">Templates</a>
+            <a class="link-desktop" href="https://flowscripts.github.io/account">BlueCodingPuma</a>
+        </div>
+    </div><br><br><br><br><br>
+Return home: <a href="https://flowscripts.github.io/home">here</a>
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div style="box-shadow: 10px 4px 25px -10px rgba(0,0,0,0.88);
+        -webkit-box-shadow: 10px 4px 25px -10px rgba(0,0,0,0.88);
+        -moz-box-shadow: 10px 4px 25px -10px rgba(0,0,0,0.88);" class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h1>Menu</h1>
+            <button  style="background: rgb(0,94,255);
+background: linear-gradient(131deg, rgba(0,94,255,1)
+ 0%, rgba(43,0,255,1) 12%, rgba(43,0,255,1) 100%); 
+ 
+ border-radius: 20px; color: white;
+
+ " onclick="closeModal()"><h2>Close</h2></button>
+           <!-- Add your menu items here -->
+
+        </div>
+    </div>
+
+
+    <script>
+        function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById("myModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .background-image {
+            width: 100%;
+            height: 150px;
+            background-image: url('image (10).png');
+            background-size: cover;
+            background-position: center;
+
+            
+        }
+    </style>
+
+</head>
+
+    <div class="background-image">
+       
+    </div>
+
+
+
+
+    <style>
+        .left {
+            width: 33%;
+            float: left;
+        }
+        .right {
+            width: 67%;
+            float: left;
+        }
+        @media screen and (max-width: 1350px) {
+            .left {
+                display: none;
+            }
+            .right {
+                width: 100%;
+            }
+        }
+    </style>
+
+<style>
+
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    /* Create a column layout with Flexbox */
+    .row {
+      display: flex;
+    }
+    
+    /* Left column (menu) */
+    .left {
+      flex: 33%;
+      padding: 15px 0;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+    
+    .left h2 {
+      padding-left: 8px;
+    }
+    
+    /* Right column (page content) */
+    .right {
+      flex: 67%;
+      padding: 15px;
+    }
+    
+    /* Style the search box */
+    #mySearch {
+
+      border-radius: 20px;
+      font-size: 18px;
+      padding: 11px;
+      border: 1px solid #ddd;
+    }
+    
+    /* Style the navigation menu inside the left column */
+    #myMenu {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    #myMenu li a {
+      padding: 12px;
+      text-decoration: none;
+      color: black;
+      display: block;
+
+    }
+    
+   
+    </style>
+    </head>
+    <body>
+    
+        
+            <style>
+                @keyframes dot-animation {
+                    0% { content: " Search Elements"; }
+                    25% { content: " Search Elements."; }
+                    50% { content: " Search Elements.."; }
+                    75% { content: " Search Elements..."; }
+                    100% { content: " Search Elements"; }
+                }
+                
+                .searchdot::after {
+                    content: "Search Elements";
+                    animation: dot-animation 2s steps(4) infinite;
+                }
+            </style>   
+
+
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .content {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1 style="font-size: 40px;" class="responsive-heading">FlowScripts</h1>
+<style>
+
+        .responsive-heading {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .responsive-heading {
+                display: block;
+            }
+        }
+
+
+        @media (max-width: 300px) {
+            .responsive-heading {
+               font-size: 30px;
+            }
+        }
+    
+
+</style>
+        <style>
+
+            .back-menu1{
+               font-size: large;
+            padding: 0px;
+            background-color: #1e00ff;
+            color: white;
+            border-radius: 20px;
+            border-color: #fefefe00;
+            
+            }
+            .back-menu1:hover{
+                background-color: #5640ff; 
+            }
+            </style>
+
+
+
+
+<style>.searcher
+    {
+        
+    
+                        padding: 1px;
+                        border: 1.75px solid grey;
+                        background-color: white;
+                        color: black;
+                        border-radius: 25px; /* Adjust border-radius as needed */
+                    
+                        font-size: 16px; /* Adjust font-size as needed */
+                    
+                   
+        
+       width:500px; text-align: left;
+      
+      
+            }
+           
+    .searcher:hover
+    {  border: 1.75px solid rgb(0, 0, 0);
+      cursor: text;
+    }</style>
+    <style> .logo-main
+    {width: 360px;}
+    
+    @media (max-width: 900px) {
+        .logo-main {
+            width: 320px;
+        }
+    }
+
+
+    @media (max-width: 700px) {
+        .logo-main {
+            width: 300px;
+        }
+    }
+
+
+
+    @media (max-width: 600px) {
+        .logo-main {
+            width: 0px;
+        }
+    }
+
+   
+</style>
+
+
+<style>.logo-main2{
+
+    width:0px;
+}
+
+
+</style>
+
+     <style>
+        .searcher {
+            width: 615px;
+        }
+
+        @media (max-width: 900px) {
+            .searcher {
+                width: 500px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .searcher {
+                width:450px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .searcher {
+                width: 350px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .searcher {
+                width: 340px;
+            }
+        }
+        @media (max-width: 350px) {
+            .searcher {
+                width: 330px;
+            }
+        }
+
+        @media (max-width: 333px) {
+            .searcher {
+                width: 280px;
+            }
+        }
+        @media (max-width: 290px) {
+            .searcher {
+                width: 250px;
+            }
+        }
+
+
+        @media (max-width: 260px) {
+            .searcher {
+                width: 210px;
+            }
+        }
+        @media (max-width: 220px) {
+            .searcher {
+                width: 175px;
+            }
+        }
+        @media (max-width: 180px) {
+            .searcher {
+                width: 150px;
+            }
+        }
+        @media (max-width: 155px) {
+            .searcher {
+                width: 100px;
+            }
+        }
+
+
+    </style>
+    <script>
+    function myFunction() {
+      var input, filter, ul, li, a, i;
+      input = document.getElementById("mySearch");
+      filter = input.value.toUpperCase();
+      ul = document.getElementById("myMenu");
+      li = ul.getElementsByTagName("li");
+      for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          li[i].style.display = "";
+        } else {
+          li[i].style.display = "none";
+        }
+      }
+    }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+<!--END OF PAGE HEADER-->
+
+
+
+
+<style>
+
+  .kot-567
+  {
+    background-color: #ffffff;
+  }
+</style> 
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="kot-567">
+  
+<br>
+  
+<h3>© FlowScripts Copyright</h3>
+      
+<style>
+  .red-link {
+      color: rgb(107, 107, 107);
+  }
+  .purple-link {
+    text-decoration: none;
+      color: rgb(255, 255, 255);
+  }
+</style>
+</head>
+<body>
+<a href="https://flowscripts.github.io/terms" class="red-link">Terms of Service</a>
+
+<br>
+<br>
+<br>
+</div>
+
+
+
+    <style>
+        .terms {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: opacity 1s ease, transform 0.5s ease;
+        }
+        .terms h2, .terms h5, .terms button {
+            margin: 10px 0;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .buttons button {
+          border-radius: 2px;
+          border-width: 0px;
+          background-color: white;
+          font-size: 20px;
+          padding: 10px;
+            flex: 1;
+        }
+        .buttons button:hover {
+          background-color: rgb(211, 211, 211);
+          font-size: 20px;
+          padding: 10px;
+            flex: 1;
+        }
+      
+        @media (max-width: 450px) {
+            .buttons {
+                flex-direction: column;
+            }
+            .buttons button:first-child {
+                order: 2;
+            }
+            .buttons button:last-child {
+                order: 1;
+            }
+        }
+        @media (max-height: 426px) {
+            .terms {
+                display: none;
+            }
+        }
+        .hidden {
+            display: none;
+        }
+        .fade-out {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+        .icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        .icon-x {
+            position: absolute;
+            top: 10px;
+            right: 40px;
+            cursor: pointer;
+        }
+        @media (max-width: 500px) {
+            .icon {
+                display: none;
+            }
+        }
+        @media (max-width: 400px) {
+            .icon-x {
+                display: none;
+            }
+        }
+        .quick-links a {
+            color: white;
+            display: block;
+            margin: 5px 0;
+            text-decoration: none;
+        }
+        .quick-links a:hover {
+            color: red;
+        }
+        .quick-links a.clicked {
+            color: rgb(0, 255, 0);
+        }
+        .quick-links1{color: white;}
+    </style>
+</head>
+<body>
+
+<div class="terms">
+    <div class="icon" onclick="showQuickLinks()">&#x22EE;</div>
+    <div class="icon-x hidden" onclick="hideQuickLinks()">&#x2716;</div>
+    <h2>Terms of Service</h2>
+    <h5>By clicking "Agree", you have read the <a class="quick-links1" href="https://flowscripts.github.io/terms">Terms</a>.</h5>
+    <div class="buttons">
+        <button class="close-div" onclick="closeTerms()">Close</button>
+        <button onclick="agreeTerms()">Agree</button>
+    </div>
+    <h3 class="hidden">Thanks!</h3>
+    <div class="quick-links hidden">
+        <h3>Quick Links</h3>
+
+        <a href="https://flowscripts.github.io/editor" onclick="handleLinkClick(event)">Live Code Editor</a>
+        <a href="https://flowscripts.github.io/tutorial" onclick="handleLinkClick(event)">Tutorial</a>
+        <a href="https://flowscripts.github.io/register" onclick="handleLinkClick(event)">Register</a>
+        <a href="https://flowscripts.github.io/login" onclick="handleLinkClick(event)">Log In</a>
+        <a href="https://flowscripts.github.io/forgot" onclick="handleLinkClick(event)">Forgot Password</a>
+    </div>
+</div>
+
+<script>
+    function closeTerms() {
+        document.querySelector('.terms').style.transform = 'translateY(100%)';
+        document.querySelector('.terms').style.transition = 'transform 0.5s ease';
+        setTimeout(() => {
+            document.querySelector('.terms').style.display = 'none';
+        }, 500);
+    }
+
+    function agreeTerms() {
+        document.querySelector('.terms h2').classList.add('hidden');
+        document.querySelector('.terms h5').classList.add('hidden');
+        document.querySelector('.buttons').classList.add('hidden');
+        document.querySelector('.terms h3').classList.remove('hidden');
+        setTimeout(() => {
+            document.querySelector('.terms').classList.add('fade-out');
+        }, 2000);
+        setTimeout(() => {
+            document.querySelector('.terms').style.display = 'none';
+            localStorage.setItem('termsAgreed', 'true');
+        }, 3000);
+    }
+
+    function showQuickLinks() {
+        document.querySelector('.terms h2').classList.add('hidden');
+        document.querySelector('.terms h5').classList.add('hidden');
+        document.querySelector('.buttons').classList.add('hidden');
+        document.querySelector('.terms .quick-links').classList.remove('hidden');
+        document.querySelector('.icon').classList.add('hidden');
+        document.querySelector('.icon-x').classList.remove('hidden');
+    }
+
+    function hideQuickLinks() {
+        document.querySelector('.terms h2').classList.remove('hidden');
+        document.querySelector('.terms h5').classList.remove('hidden');
+        document.querySelector('.buttons').classList.remove('hidden');
+        document.querySelector('.terms .quick-links').classList.add('hidden');
+        document.querySelector('.icon').classList.remove('hidden');
+        document.querySelector('.icon-x').classList.add('hidden');
+    }
+
+    function handleLinkClick(event) {
+        event.preventDefault();
+        const link = event.target;
+        link.classList.add('clicked');
+        setTimeout(() => {
+            window.location.href = link.href;
+        }, 400);
+    }
+
+    window.onload = function() {
+        if (localStorage.getItem('termsAgreed') === 'true') {
+            document.querySelector('.terms').style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>
+
+    <style>
+        /* Initial styling for the overlay */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white; /* White background */
+            z-index: 9999; /* Ensure it's above other content */
+            transition: opacity 0.5s ease; /* Fading effect */
+        }
+    </style>
+</head>
+<body>
+    <div id="overlay"></div>
+
+    <script>
+        // JavaScript to fade out the overlay after the page loads
+        window.addEventListener('load', function() {
+            document.getElementById('overlay').style.opacity = '0';
+            setTimeout(function() {
+                document.getElementById('overlay').style.display = 'none';
+            }, 300); // Duration of the fade effect in milliseconds
+        });
+    </script>
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
